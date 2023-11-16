@@ -1,0 +1,42 @@
+.wrapper {
+  display: flex;
+  gap: 20px;
+  margin-left: 25px;
+
+  .checkboxWrapper {
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    & input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+    }
+    & span {
+      position: absolute;
+      pointer-events: none;
+      top: 0;
+      left: 0;
+      height: 18px;
+      width: 18px;
+      background-color: #ffffff;
+      border: 1px solid rgb(114, 113, 113);
+      border-radius: 36px;
+    }
+
+    &:hover input ~ span {
+      border-color: #929292;
+      border: 1px solid rgb(114, 113, 113);
+    }
+
+    & input:checked ~ span {
+      background: url("/nau-user/public/assets/checked.svg");
+      background-color: #65b230;
+      border: 0;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+.secImg {
+  border-bottom: 0px;
+}
+
+.titleCont {
+  position: relative;
+}
+
+.title {
+  position: absolute;
+  color: #ffffff;
+  bottom: 96px;
+  left: 80px;
+  font-size: 36px;
+  line-height: 40px;
+}
+
+.titleAU {
+  font-weight: 700;
+}
+
+.img {
+  border-radius: 36px 0 0 36px;
+}
+
+@media screen and (max-width: 750px) {
+  .secImg {
+    background-color: #ffffff;
+    margin-top: -40px;
+  }
+
+  .img {
+    border-radius: 0 0 36px 36px;
+    height: 360px;
+  }
+
+  .title {
+    position: absolute;
+    color: #ffffff;
+    bottom: 45px;
+    left: 9%;
+    font-size: 30px;
+    line-height: 40px;
+  }
+}
+@media screen and (max-width: 380px) {
+  .secImg {
+    margin-top: -50px;
+  }
+  .img {
+    border-radius: 0 0 36px 36px;
+  }
+}
