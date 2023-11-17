@@ -2,7 +2,7 @@ import Button from "@/components/UI/Buttons/Button";
 import AddIcon from "@/components/UI/Icons/AddIcon";
 import Search from "@/components/UI/Icons/Search";
 import BaseInput from "@/components/UI/Inputs/Input";
-import css from "@/styles/dashboard.module.css";
+import css from "@/components/Layouts/Dashboard/dashboard.module.css";
 
 /** 
  * The LeftSecWrapper Component.

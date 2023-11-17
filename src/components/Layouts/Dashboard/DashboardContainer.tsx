@@ -5,7 +5,7 @@
  
  */
 
-import css from "@/styles/dashboard.module.css";
+import css from "./dashboard.module.css";
 import { HTMLAttributes, useCallback, useState } from "react";
 
 import TicketList from "@/components/Widgets/Dashboard/Tickets/TicketList";
@@ -51,12 +51,3 @@ const DashboardContainer: React.FC<HTMLAttributes<HTMLFormElement>> = () => {
 };
 
 export default DashboardContainer;
-
-{
-  /* <div className="text-green-cdl flex pt-6 pb-4 text-sm justify-between mr-16 font-semibold ">
-          <TicketContHead />
-        </div>
-        <div className={css.ticketBody}>
-          <TicketList />
-        </div> */
-}

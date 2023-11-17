@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./_utilities";
 
 body {
   background: url(../../public/assets/Bck_LOGIN_UNICA_OK_Desk.jpg);

@@ -1,0 +1,14 @@
+@layer _utilities {
+  .text-clamp {
+    --line-clamps: 1;
+    --line-height: inherit;
+    --clamp-lines: var(--line-clamps);
+    -webkit-line-clamp: var(--clamp-lines);
+    -webkit-box-orient: vertical;
+    display: -webkit-box !important;
+    overflow: hidden;
+    word-break: unset;
+    line-height: var(--line-height);
+    height: calc(var(--line-height) * var(--clamp-lines));
+  }
+}
