@@ -3,6 +3,7 @@ import AddIcon from "@/components/UI/Icons/AddIcon";
 import Search from "@/components/UI/Icons/Search";
 import BaseInput from "@/components/UI/Inputs/Input";
 import css from "@/components/Layouts/Dashboard/dashboard.module.css";
+import { HTMLAttributes } from "react";
 
 /** 
  * The LeftSecWrapper Component.
@@ -11,13 +12,12 @@ import css from "@/components/Layouts/Dashboard/dashboard.module.css";
  
  */
 
-type SearchticketProps = {
-  title: string;
+type LeftSecWrapperProps = {
   onSearchTicket: React.ChangeEventHandler<HTMLInputElement>;
 };
 
 const LeftSecWrapper: React.FC<
-  React.HTMLAttributes<HTMLDivElement> & SearchticketProps
+  HTMLAttributes<HTMLDivElement> & LeftSecWrapperProps
 > = (props) => {
   const { onSearchTicket } = props;
   return (
@@ -28,7 +28,7 @@ const LeftSecWrapper: React.FC<
       </section>
       <section className={css.sxCommWrapper}>
         <div className={css.sxWrapperBtn}>
-          <Button title="Nuovo Ticket" className={css.sxCommBtn} />
+          <Button title="NUOVO TICKET" className={css.sxCommBtn} />
           <AddIcon className="w-5 h-5 absolute bottom-[11px] left-5" />
         </div>
         <div className={css.sxWrapperBtn}>
