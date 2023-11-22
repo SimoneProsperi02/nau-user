@@ -34,6 +34,7 @@ const SelectStatus: React.FC = () => {
             onClick={() => {
               setSelectedStatus(item);
               setSelectOpen(false);
+              console.log(item);
             }}
             className={`flex justify-start items-center px-2 py-1 hover:bg-[#64b2309f] hover:text-black cursor-pointer  ${
               selectedStatus === item ? "bg-[#64b230c7] text-white " : ""

@@ -3,6 +3,7 @@ import MailOpen from "@/components/UI/Icons/MailOpen";
 import Padlock from "@/components/UI/Icons/Padlock";
 import PadlockOpen from "@/components/UI/Icons/PadlockOpen";
 import Ticket from "@/lib/models/Entities/Ticket";
+import { formatLocaleDate } from "@/lib/utils/dateUtils";
 import { useState } from "react";
 
 type TicketItemsProps = {
@@ -11,23 +12,15 @@ type TicketItemsProps = {
 
 const TicketItem: React.FC<
   TicketItemsProps & React.HTMLAttributes<HTMLDivElement>
-> = (props) => {
+> = ({ ticket }) => {
   const { taxonomy, id, lastMessage, answered, openDate, content, close } =
-    props.ticket;
-  const [isAnswered, setIsAnswered] = useState(close);
-  const [isOpen, setIsOpen] = useState(answered);
+    ticket;
 
-  const formattedOpenDate = openDate.toLocaleString(undefined, {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
+  const formattedOpenDate = openDate ? formatLocaleDate(openDate, "it") : false;
+  const formattedMessageDate = lastMessage
+    ? formatLocaleDate(lastMessage, "it")
+    : false;
 
-  const formattedMessageDate = lastMessage.toLocaleString(undefined, {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
   return (
     <div className="grid grid-cols-2 border mb-2 rounded-[10px] p-6 bg-[#e6e6e64f]">
       <div className="grid grid-cols-3 ">
@@ -46,14 +39,14 @@ const TicketItem: React.FC<
       <div className="grid grid-cols-3  ml-28">
         <p className="text-xs font-medium  ml-2">{formattedMessageDate}</p>
         <p>
-          {isAnswered ? (
+          {answered ? (
             <MailOpen className="w-6 h-6 ml-12" />
           ) : (
             <MailClose className="w-6 h-6 ml-12" />
           )}
         </p>
         <p>
-          {isOpen ? (
+          {close ? (
             <PadlockOpen className="w-6 h-6  ml-8" />
           ) : (
             <Padlock className="w-6 h-6  ml-8" />

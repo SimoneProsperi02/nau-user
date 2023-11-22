@@ -9,16 +9,17 @@ import TicketContHead from "./TicketContHead";
 import { HtmlHTMLAttributes } from "react";
 import TicketItem from "./TicketItem";
 import css from "@/components/Layouts/Dashboard/dashboard.module.css";
+import Ticket from "@/lib/models/Entities/Ticket";
 
 type TicketWrapperProps = {
-  ticketWrapperItems: Array<any>;
+  tickets: Array<Ticket>;
 };
 
-const TicketWrapper: React.FC<
+const TicketList: React.FC<
   HtmlHTMLAttributes<HTMLTableElement> & TicketWrapperProps
 > = (props) => {
   const htmlProps = { ...props };
-  const { ticketWrapperItems } = htmlProps;
+  const { tickets } = htmlProps;
 
   const classNames = [
     "flex flex-col h-[65vh] overflow-y-scroll ",
@@ -30,7 +31,7 @@ const TicketWrapper: React.FC<
       <TicketContHead />
 
       <div className={classNames.join(" ")}>
-        {ticketWrapperItems.map((ticket) => {
+        {tickets.map((ticket) => {
           return <TicketItem ticket={ticket} />;
         })}
       </div>
@@ -38,4 +39,4 @@ const TicketWrapper: React.FC<
   );
 };
 
-export default TicketWrapper;
+export default TicketList;
