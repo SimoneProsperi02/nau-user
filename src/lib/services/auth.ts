@@ -11,6 +11,7 @@ export const logIn = async (loginData: AuthApi.AuthData) => {
 
   const response = await fetch(url, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
       "X-API-Key": NEXT_PUBLIC_API_KEY,

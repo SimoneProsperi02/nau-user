@@ -19,6 +19,7 @@ const TicketList: React.FC<
   HtmlHTMLAttributes<HTMLTableElement> & TicketWrapperProps
 > = (props) => {
   const htmlProps = { ...props };
+
   const { tickets } = htmlProps;
 
   const classNames = [

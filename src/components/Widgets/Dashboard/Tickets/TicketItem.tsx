@@ -13,7 +13,7 @@ type TicketItemsProps = {
 const TicketItem: React.FC<
   TicketItemsProps & React.HTMLAttributes<HTMLDivElement>
 > = ({ ticket }) => {
-  const { taxonomy, id, lastMessage, answered, openDate, content, close } =
+  const { taxonomy, id, lastMessage, answered, openDate, content, status } =
     ticket;
 
   const formattedOpenDate = openDate ? formatLocaleDate(openDate, "it") : false;
@@ -46,7 +46,7 @@ const TicketItem: React.FC<
           )}
         </p>
         <p>
-          {close ? (
+          {status === "APERTO" || status === "IN LAVORAZIONE" ? (
             <PadlockOpen className="w-6 h-6  ml-8" />
           ) : (
             <Padlock className="w-6 h-6  ml-8" />

@@ -34,7 +34,7 @@
     }
 
     & input:checked ~ span {
-      background: url("/nau-user/public/assets/checked.svg");
+      background: url("../../public/assets/checked.svg");
       background-color: #65b230;
       border: 0;
     }

@@ -6,11 +6,12 @@ const useSearchHook = <T extends unknown = unknown>(
 ) => {
   const res = useMemo(
     () =>
-      data.filter((obj) =>
-        JSON.stringify(obj)
+      data.filter((obj) => {
+        return JSON.stringify(obj)
           .toLowerCase()
-          .includes(searchText.toLowerCase().trim())
-      ),
+          .trim()
+          .includes(searchText.toLowerCase().trim());
+      }),
     [searchText, data]
   );
 

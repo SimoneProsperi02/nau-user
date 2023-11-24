@@ -23,7 +23,7 @@ const LoginHelpers: React.FC<React.HTMLAttributes<HTMLDivElement>> = (
         </p>
       </div>
       <a
-        href="#"
+        href="https://www.consulentidellavoro.it/password-reset"
         className="text-[13px] pr-5 text-[#999999] font-semibold hover:text-green-cdl"
       >
         Forgot password?

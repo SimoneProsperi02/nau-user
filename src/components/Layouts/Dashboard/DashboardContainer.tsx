@@ -18,10 +18,16 @@ import SelectService from "@/components/Widgets/Dashboard/Tickets/Command/Ticket
 import SelectStatus from "@/components/Widgets/Dashboard/Tickets/Command/TicketFilter/SelectStatus";
 import services from "@/data/General/Services";
 import tickets from "@/data/General/Tickets";
+import status from "@/data/General/status";
 
 export type onSelectServiceType = (
   e: React.MouseEvent<HTMLButtonElement>,
   service: string
+) => void;
+
+export type onSelectStatusType = (
+  e: React.MouseEvent<HTMLButtonElement>,
+  status: string
 ) => void;
 
 type TicketItemsProps = {
@@ -29,24 +35,38 @@ type TicketItemsProps = {
 };
 
 const DashboardContainer: NextPage<TicketItemsProps> = (props) => {
+  const [value, setValue] = useState("");
+  const [filteredService, SetFilteredService] = useState("");
   const [selectOpen, setSelectOpen] = useState(false);
   const [selectedService, setSelectedService] = useState("Servizio ticket");
-  const [value, setValue] = useState("");
-  const result = useSearchHook(tickets, value);
-  const [filteredService, SetFilteredService] = useState("");
+  const [selectStausOpen, setSelectStatusOpen] = useState(false);
+  const [filteredStatus, SetFilteredStatus] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState("Stato ticket");
 
-  const filteredTicket = useMemo(() => {
+  const result = useSearchHook(tickets, value);
+  const filteredSerivces = useMemo(() => {
     if (selectedService === "TUTTI" || selectedService === "Servizio ticket")
       return result;
-
     return result.filter((ticket) => selectedService == ticket.taxonomy);
-  }, [selectedService]);
+  }, [selectedService, result]);
+  const filteredStato = useMemo(() => {
+    if (selectedStatus === "Stato ticket" || selectedStatus === "TUTTI")
+      return filteredSerivces;
+    return filteredSerivces.filter(
+      (ticket) => selectedStatus === ticket.status
+    );
+  }, [selectedStatus, filteredSerivces]);
 
-  /* prettier-ignore */
+  const onSelectStatus: onSelectStatusType = useCallback((e, status) => {
+    setSelectedStatus(status);
+    setSelectStatusOpen(false);
+    SetFilteredStatus(status);
+  }, []);
+
   const onSelectService: onSelectServiceType = useCallback((e, service) => {
-        setSelectedService(service);
-        setSelectOpen(false);
-        SetFilteredService(service);
+    setSelectedService(service);
+    setSelectOpen(false);
+    SetFilteredService(service);
   }, []);
 
   const onSearchTicket: React.ChangeEventHandler<HTMLInputElement> =
@@ -76,11 +96,17 @@ const DashboardContainer: NextPage<TicketItemsProps> = (props) => {
               onSetSelectOpen={setSelectOpen}
               selectOpen={selectOpen}
             />
-            <SelectStatus />
+            <SelectStatus
+              status={status}
+              onSelectStatus={onSelectStatus}
+              selectedStatus={selectedStatus}
+              onSetSelectOpen={setSelectStatusOpen}
+              selectOpen={selectStausOpen}
+            />
           </div>
         </div>
 
-        <TicketList tickets={filteredTicket} />
+        <TicketList tickets={filteredStato} />
       </div>
     </div>
   );

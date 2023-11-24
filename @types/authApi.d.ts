@@ -8,5 +8,10 @@ namespace AuthApi {
     accessToken: string;
     refreshToken: string;
   };
-  type LoginResponse = Api.Response<AuthApi.Token>;
+
+  type AuthSession = {
+    session: AuthApi.Token;
+    user: any;
+  };
+  type LoginResponse = Api.Response<AuthApi.AuthSession>;
 }

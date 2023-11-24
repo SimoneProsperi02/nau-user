@@ -26,7 +26,7 @@ export type TicketsProps = {
   /*
    * -Se il ticket è aperto o chiuso
    */
-  close: boolean;
+  status: string;
   /*
    * -La url per visualizzare il ticket
    */
@@ -40,7 +40,7 @@ class Ticket implements TicketsProps {
   taxonomy;
   lastMessage;
   answered;
-  close;
+  status;
   baseUrl;
 
   constructor(props: TicketsProps) {
@@ -52,7 +52,7 @@ class Ticket implements TicketsProps {
       ? new Date(props.lastMessage)
       : undefined;
     this.answered = props.answered;
-    this.close = props.close;
+    this.status = props.status;
     this.baseUrl = props.baseUrl;
   }
 }

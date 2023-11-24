@@ -17,7 +17,6 @@ import LoginHelpers from "./LoginHelpers";
 
 const LoginFormSec: React.FC = (): JSX.Element => {
   const router = useRouter();
-  const [isLogin, setIsLogin] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | JSX.Element | null>(null);
 
@@ -30,13 +29,13 @@ const LoginFormSec: React.FC = (): JSX.Element => {
     const emailValue = emailRef.current?.value;
     const passwordValue = passwordRef.current?.value;
     if (!emailValue || emailValue.trim().length === 0) {
-      setError("Per favore, inserisci un indirizzo email.");
+      setError("Cane di merda, inserisci un indirizzo email.");
       emailRef.current?.focus();
       return;
     }
 
     if (!passwordValue || passwordValue.trim().length === 0) {
-      setError("Per favore, inserisci un password.");
+      setError("Tu troia di merda, inserisci un password.");
       passwordRef.current?.focus();
       return;
     }
@@ -44,20 +43,18 @@ const LoginFormSec: React.FC = (): JSX.Element => {
     setIsLoading(true);
 
     try {
-      if (isLogin) {
-        const { logIn } = await import("@/lib/services/auth");
-        await logIn({
-          email: emailValue,
-          password: passwordValue,
-        });
-        setIsLoading(false);
-        router.push("/");
-        return;
-      }
-      setIsLoading(false);
-      setIsLogin(true);
+      const { logIn } = await import("@/lib/services/auth");
+      const res = await logIn({
+        email: emailValue,
+        password: passwordValue,
+      });
+
+      console.log(res);
+      // router.push("/");
+      return;
     } catch (err) {
-      console.error("error");
+      console.error(err);
+    } finally {
       setIsLoading(false);
     }
   };
