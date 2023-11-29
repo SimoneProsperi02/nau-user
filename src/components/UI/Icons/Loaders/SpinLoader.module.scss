@@ -1,0 +1,50 @@
+.loader {
+  max-width: 100%;
+  max-height: 100%;
+
+  & circle:first-child {
+    stroke: #000000;
+    stroke-width: 1px;
+    opacity: 0.04;
+  }
+  & circle:last-child {
+    stroke-dasharray: 70;
+    stroke-dashoffset: -50;
+    animation-name: spin;
+    animation-duration: var(--duration, 1s);
+    animation-timing-function: var(--timing, linear);
+    animation-iteration-count: infinite;
+    transform-origin: center;
+  }
+}
+
+.loader.v1 circle:last-child {
+  --duration: 2s;
+  --timing: cubic-bezier(0.4, 0, 0.75, 0.85);
+  animation-name: spin2;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spin2 {
+  0% {
+    transform: rotate(0deg);
+    stroke-dashoffset: -50;
+  }
+  25% {
+    stroke-dashoffset: -80;
+  }
+  50% {
+    stroke-dashoffset: -190;
+  }
+  100% {
+    transform: rotate(360deg);
+    stroke-dashoffset: -190;
+  }
+}

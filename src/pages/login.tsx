@@ -1,3 +1,4 @@
+import Auth from "@/components/HOC/Auth";
 import LoginSec from "@/components/Layouts/Login/LoginSec";
 
 import { NextPage } from "next";

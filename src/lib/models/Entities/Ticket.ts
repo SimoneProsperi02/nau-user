@@ -1,34 +1,41 @@
 export type TicketsProps = {
   /*
-   * -Id del ticket
+   * Unique identifier of the ticket.
    */
   id: number;
+
   /*
-  Data apertura del ticket
+   * Opening date of the ticket. It can be either a string or a Date object.
    */
   openDate?: string | Date;
+
   /*
-   * -Testo contenuto all' interno del ticket
+   * Text content inside the ticket.
    */
   content: string;
+
   /*
-   * -Tipologia del servizio del ticket
+   * Type of service associated with the ticket.
    */
   taxonomy: string;
+
   /*
-   * -Data ultimo messaggio inviato
+   * Date of the last message sent in the ticket. It can be either a string or a Date object.
    */
   lastMessage?: string | Date;
+
   /*
-   * -Se il ticket aperto ha ricevuto una risposta o meno
+   * Indicates whether the open ticket has received a response or not.
    */
   answered: boolean;
+
   /*
-   * -Se il ticket è aperto o chiuso
+   * Current status of the ticket (open or closed).
    */
   status: string;
+
   /*
-   * -La url per visualizzare il ticket
+   * URL to view the ticket.
    */
   baseUrl: string;
 };

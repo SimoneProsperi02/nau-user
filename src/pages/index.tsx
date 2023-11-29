@@ -1,14 +1,14 @@
+// import AuthChecker from "@/store/Auth/AuthChecker";
+import Auth from "@/components/HOC/Auth";
 import DashboardContainer from "@/components/Layouts/Dashboard/DashboardContainer";
 
-import { NextPage } from "next";
-import { Montserrat } from "next/font/google";
-const montserrat = Montserrat({ subsets: ["latin"] });
-
-const Dashboard: NextPage = () => {
+const Dashboard = (
+  props: AugmentedAppProps<CustomInitialProps> & CustomAppProps
+) => {
   return (
-    <div className={montserrat.className}>
+    <Auth auth={undefined}>
       <DashboardContainer />
-    </div>
+    </Auth>
   );
 };
 export default Dashboard;

@@ -26,7 +26,7 @@ const SelectService: React.FC<
   return (
     <div className=" flex-col text-sm justify-center items-center px-2 font-semibold text-[#000000] ">
       <div
-        onClick={() => onSetSelectOpen(true)}
+        onClick={() => onSetSelectOpen((prev) => !prev)}
         className="flex flex-row justify-between w-[9vw] p-2 rounded-[25px] cursor-pointer border border-solid border-green-cdl hover:bg-green-cdl hover:text-white"
       >
         <span>{selectedService}</span>

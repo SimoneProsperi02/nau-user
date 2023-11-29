@@ -1,17 +1,27 @@
-namespace AuthApi {
-  type AuthData = {
-    email: string;
-    password: string;
-  };
+import User from "@/lib/models/Entities/Users";
 
-  type Token = {
-    accessToken: string;
-    refreshToken: string;
-  };
+/* prettier-ignore */
+declare global {
+  namespace AuthApi {
+    type AuthData = {
+      email   : string
+      password: string
+    }
+  
+    type Token = {
+      accessToken : string
+      refreshToken: string
+    }
+  
+    type AuthSession = {
+      session : AuthApi.Token
+      user    : User
+    }
+  
+  
+    type LoginResponse          = Api.Response<AuthApi.AuthSession>
+    type GetSessionResponse     = AuthApi.LoginResponse
+    type RefreshSessionResponse = AuthApi.LoginResponse
+  }
 
-  type AuthSession = {
-    session: AuthApi.Token;
-    user: any;
-  };
-  type LoginResponse = Api.Response<AuthApi.AuthSession>;
 }

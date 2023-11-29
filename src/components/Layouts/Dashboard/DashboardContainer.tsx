@@ -18,7 +18,7 @@ import SelectService from "@/components/Widgets/Dashboard/Tickets/Command/Ticket
 import SelectStatus from "@/components/Widgets/Dashboard/Tickets/Command/TicketFilter/SelectStatus";
 import services from "@/data/General/Services";
 import tickets from "@/data/General/Tickets";
-import status from "@/data/General/status";
+import status from "@/data/General/Status";
 
 export type onSelectServiceType = (
   e: React.MouseEvent<HTMLButtonElement>,
@@ -31,7 +31,7 @@ export type onSelectStatusType = (
 ) => void;
 
 type TicketItemsProps = {
-  ticket: Ticket;
+  ticket?: Ticket;
 };
 
 const DashboardContainer: NextPage<TicketItemsProps> = (props) => {
@@ -79,7 +79,11 @@ const DashboardContainer: NextPage<TicketItemsProps> = (props) => {
       <ProfileUser />
 
       <div className={css.leftWrapper}>
-        <LeftSecWrapper onSearchTicket={onSearchTicket} title="Search ticket" />
+        <LeftSecWrapper
+          onSearchTicket={onSearchTicket}
+          value={value}
+          title="Search ticket"
+        />
       </div>
       <div className={css.ticketWrapper}>
         <div className={css.headerTicketWrapper}>

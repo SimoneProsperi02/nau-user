@@ -33,7 +33,7 @@ const TicketList: React.FC<
 
       <div className={classNames.join(" ")}>
         {tickets.map((ticket) => {
-          return <TicketItem ticket={ticket} />;
+          return <TicketItem ticket={ticket} key={ticket.id} />;
         })}
       </div>
     </section>

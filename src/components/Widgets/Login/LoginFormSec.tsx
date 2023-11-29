@@ -5,8 +5,7 @@
  *
  */
 
-import { useRef, useState } from "react";
-
+import { useContext, useRef, useState } from "react";
 import Button from "@/components/UI/Buttons/Button";
 import LoginFormWrapper from "@/components/Widgets/Login/LoginFormWrapper";
 import css from "@/styles/form.module.css";
@@ -14,11 +13,14 @@ import { useRouter } from "next/router";
 import PasswordInput from "@/components/UI/Inputs/PasswordInput";
 import Input from "@/components/UI/Inputs/Input";
 import LoginHelpers from "./LoginHelpers";
+import AuthContext from "@/store/Auth/AuthContext";
+import SpinLoader from "@/components/UI/Icons/Loaders/SpinLoader";
 
 const LoginFormSec: React.FC = (): JSX.Element => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | JSX.Element | null>(null);
+  const { logIn } = useContext(AuthContext);
 
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -29,13 +31,13 @@ const LoginFormSec: React.FC = (): JSX.Element => {
     const emailValue = emailRef.current?.value;
     const passwordValue = passwordRef.current?.value;
     if (!emailValue || emailValue.trim().length === 0) {
-      setError("Cane di merda, inserisci un indirizzo email.");
+      setError("Inserisci un indirizzo email!");
       emailRef.current?.focus();
       return;
     }
 
     if (!passwordValue || passwordValue.trim().length === 0) {
-      setError("Tu troia di merda, inserisci un password.");
+      setError("Inserisci un password!");
       passwordRef.current?.focus();
       return;
     }
@@ -43,14 +45,12 @@ const LoginFormSec: React.FC = (): JSX.Element => {
     setIsLoading(true);
 
     try {
-      const { logIn } = await import("@/lib/services/auth");
-      const res = await logIn({
+      await logIn({
         email: emailValue,
         password: passwordValue,
       });
+      router.push("/");
 
-      console.log(res);
-      // router.push("/");
       return;
     } catch (err) {
       console.error(err);
@@ -86,10 +86,14 @@ const LoginFormSec: React.FC = (): JSX.Element => {
         <div className="flex w-[100%] justify-between">
           <LoginHelpers />
         </div>
-        <Button type="submit" title="ACCEDI" className="w-[44%] self-center" />
+        <Button
+          type="submit"
+          title="ACCEDI"
+          className="w-[44%] flex justify-center self-center"
+        >
+          {isLoading ? <SpinLoader className="w-6 h-6" /> : "ACCEDI"}
+        </Button>
       </form>
-      {isLoading && "Loading..."}
-      {error && <span className="text-red-500 text-sm">{error}</span>}
     </LoginFormWrapper>
   );
 };

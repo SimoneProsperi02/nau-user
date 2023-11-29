@@ -31,6 +31,10 @@ class User implements UserProps {
     this.role = props.role;
     this.cdl_status = props.cdl_status;
   }
+
+  getFullName() {
+    return `${this.first_name} ${this.last_name}`;
+  }
 }
 
 export default User;
